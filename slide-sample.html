@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+	<title>Slide Sample</title>
+	<meta charset="UTF-8">
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	#content {
+		position: relative;
+	}
+	#wrapper {
+		position: relative;
+		margin: 100px auto;
+		width: 750px;
+		overflow: hidden;
+	}
+	ul {
+		width: 2500px;
+		transition: transform 0.25s ease-in;
+	}
+	li {
+		display: table-cell;  
+	    *display: inline;
+		width: 250px;
+		list-style: none;
+	}
+	#left-btn, #right-btn {
+		display: block;
+		position: absolute;
+		top: 140px;
+		color: red;
+		font-weight: bolder;
+		width: 60px;
+		height: 60px;
+		border-radius: 30px;
+		border: red 1px solid;
+		font-weight: 1.8em;
+		line-height: 60px;
+		text-align: center;
+		cursor: pointer;
+		z-index: 200;
+	}
+	#left-btn:hover, #right-btn:hover {
+		color: white;
+		background-color: red;
+	}
+	#left-btn {
+		left: 10px;
+	}
+	#right-btn {
+		right: 10px;
+	}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+<div id="content">
+	<div id="wrapper">
+		<span id="left-btn" data-calc="-250"><</span>
+		<ul id="slider" data-pos="0">
+			<li><img src="http://placekitten.com/g/250/380"></li>
+			<li><img src="http://placekitten.com/g/251/380"></li>
+			<li><img src="http://placekitten.com/g/252/380"></li>
+			<li><img src="http://placekitten.com/g/250/380"></li>
+			<li><img src="http://placekitten.com/g/250/380"></li>
+			<li><img src="http://placekitten.com/g/250/380"></li>
+			<li><img src="http://placekitten.com/g/250/380"></li>
+			<li><img src="http://placekitten.com/g/250/380"></li>
+			<li><img src="http://placekitten.com/g/250/380"></li>
+			<li><img src="http://placekitten.com/g/250/380"></li>
+		</ul>
+		<span id="right-btn" data-calc="250">></span>
+	</div>
+</div>
+
+<script type="text/javascript">
+(function() {
+	$('#left-btn,#right-btn').on('click', function() {
+		var $this = $(this)
+		,	$slider = $('#slider')
+		,	dest = $slider.data('pos') + $this.data('calc');
+
+		$slider.css('transform', 'translate(' + dest + 'px, 0px)').on('transitionend', function() {
+			$slider.data('pos', dest)
+		});
+	});
+})(jQuery);
+</script>
+
+</html>
